@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>М094 — Бесплатный пробный тест | MAGIST.PRO</title>
+<style>
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:#f5f5f7;color:#1d1d1f;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif}
+header{position:sticky;top:0;z-index:20;background:rgba(245,245,247,.92);backdrop-filter:blur(18px);border-bottom:1px solid #ddd}
+.bar{max-width:980px;margin:auto;padding:14px 18px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+.logo{font-weight:800}.badge{font-size:12px;background:#fff;border:1px solid #ddd;border-radius:999px;padding:7px 10px}
+main{max-width:980px;margin:auto;padding:38px 18px 80px}
+h1{font-size:clamp(38px,7vw,76px);line-height:.94;letter-spacing:-.055em;margin:20px 0 12px}
+.sub{font-size:18px;color:#6e6e73;max-width:650px;line-height:1.45}
+.mode{display:flex;background:#e8e8ed;padding:4px;border-radius:14px;width:max-content;margin:28px 0 16px}
+.mode button{border:0;background:transparent;padding:11px 22px;border-radius:11px;font-weight:700;cursor:pointer}
+.mode button.on{background:#fff;box-shadow:0 1px 4px #0001}
+.subjects{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:30px}
+.subjects button{border:1px solid #d2d2d7;background:#fff;border-radius:999px;padding:10px 14px;cursor:pointer}
+.subjects button.on{background:#1d1d1f;color:#fff;border-color:#1d1d1f}
+.info{font-size:14px;color:#6e6e73;margin:10px 0 25px}
+.q{background:#fff;border-radius:22px;padding:22px;margin:12px 0;border:1px solid #e7e7ea}
+.num{font-size:12px;color:#86868b;font-weight:700;text-transform:uppercase}
+.q h3{font-size:18px;line-height:1.4;margin:8px 0 15px;white-space:pre-wrap}
+.opt{display:flex;gap:10px;align-items:flex-start;border:1px solid #d2d2d7;border-radius:14px;padding:12px 13px;margin:8px 0;cursor:pointer;line-height:1.35}
+.opt:hover{border-color:#888}.opt input{margin-top:3px}.opt.good{background:#edf8ef;border-color:#7ab98a}.opt.bad{background:#fff0f0;border-color:#e09a9a}
+.exp{display:none;margin-top:13px;padding:13px;border-radius:12px;background:#f5f5f7;font-size:14px;line-height:1.45}
+.exp.show{display:block}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}
+.finish,.reset{border:0;border-radius:999px;padding:14px 20px;font-weight:700;font-size:15px;cursor:pointer}
+.finish{background:#0071e3;color:#fff}.reset{background:#e8e8ed}
+.result{display:none;background:#1d1d1f;color:#fff;border-radius:24px;padding:25px;margin:28px 0}
+.result.show{display:block}.result strong{font-size:42px;display:block;letter-spacing:-.04em}
+.note{font-size:12px;color:#86868b;margin-top:28px}
+@media(max-width:600px){main{padding-top:24px}.bar{padding:12px 14px}.q{padding:17px;border-radius:18px}.mode{width:100%}.mode button{flex:1}.subjects button{flex:1}h1{font-size:46px}}
+</style>
+</head>
+<body>
+<header><div class="bar"><div class="logo">MAGIST.PRO</div><div class="badge">М094 · RU · БЕСПЛАТНО</div></div></header>
+<main>
+<div class="num">ПРОБНЫЙ ТЕСТ</div>
+<h1>М094<br>Информационные технологии</h1>
+<div class="sub">Выберите режим. В «Квизе» ответ проверяется сразу. В «Тесте» ответы проверяются только после кнопки «Показать результат».</div>
+
+<div class="mode">
+<button id="quizBtn" class="on" onclick="setMode('quiz')">КВИЗ</button>
+<button id="testBtn" onclick="setMode('test')">ТЕСТ</button>
+</div>
+
+<div class="subjects">
+<button id="algBtn" class="on" onclick="setSubject('alg')">Алгоритмы · 30</button>
+<button id="dbBtn" onclick="setSubject('db')">Базы данных · 20</button>
+</div>
+<div class="info" id="info"></div>
+<div id="questions"></div>
+<div class="actions">
+<button class="finish" id="finish" onclick="finishTest()">Показать результат</button>
+<button class="reset" onclick="resetAll()">Начать заново</button>
+</div>
+<div class="result" id="result"></div>
+<div class="note">MAGIST.PRO · М094 · Бесплатный пробный тест</div>
+</main>
+
+<script>
+const D={"alg": [{"q": "Результат следующего кода: int a=9; if(a!=5) a++;", "o": ["уровень 6", "уровень 1", "уровень 0", "уровень 9", "уровень 5"], "a": [3], "e": "Правильный ответ: уровень 9."}, {"q": "Объявление свойства каждой переменной", "o": ["размер", "тип, размер, спецификатор знака", "спецификатор знака", "тип", "тип, размер, знак, значение"], "a": [1], "e": "Правильный ответ: тип, размер, спецификатор знака."}, {"q": "Из предложенных вариантов выберите цикл с уменьшением счётчика", "o": ["for (int i=20; i>=1; i-=2)", "for (int i=20; i<=1; i-=2)", "for (int i=1; i<=20; i-=2)", "for (int i=20; i>=1; i+=2)", "for (int i=1; i<=20; i+=2)"], "a": [0], "e": "Правильный ответ: for (int i=20; i>=1; i-=2)."}, {"q": "Результат операции инкремента для переменной со значением 3", "o": ["3.5", "3", "4", "1", "5"], "a": [2], "e": "Правильный ответ: 4."}, {"q": "Оператор следующей блок-схемы", "o": ["do while", "if", "if else if", "for", "if else"], "a": [4], "e": "Правильный ответ: if else."}, {"q": "Определите результат выполнения фрагмента программы с циклом и счётчиком", "o": ["1254", "3", "4", "5", "10"], "a": [3], "e": "Правильный ответ: 5."}, {"q": "Оператор многоветвенного ветвления условием", "o": ["if", "goto", "case", "else", "not"], "a": [2], "e": "Правильный ответ: case."}, {"q": "Объект языка, помеченный указателем, имеет класс хранения", "o": ["auto", "begin", "local", "program", "static"], "a": [4], "e": "Правильный ответ: static."}, {"q": "Цикл всех элементов массива второй строки имеет размер 3×4", "o": ["вариант A", "вариант B", "вариант C", "вариант D", "вариант E"], "a": [1], "e": "Правильный ответ: вариант B."}, {"q": "Заголовочный файл для математических вычислений", "o": ["<errno.h>", "<signal.h>", "<math.h>", "<assert.h>", "<setjmp.h>"], "a": [2], "e": "Правильный ответ: <math.h>."}, {"q": "Результат выполнения операции x = pow(2, 7)", "o": ["128", "255", "64", "256", "127"], "a": [0], "e": "Правильный ответ: 128."}, {"q": "Вставка элемента в неупорядоченный массив", "o": ["требует сдвига других элементов", "требует нескольких сравнений", "выполняется за постоянное время", "требует замены адреса", "пропорционально размеру массива"], "a": [2], "e": "Правильный ответ: выполняется за постоянное время."}, {"q": "Какой вид сортировки представлен фрагментом с попарным сравнением соседних элементов", "o": ["сортировка вставкой", "линейный поиск", "двоичный поиск", "пузырьковая сортировка", "сортировка кучей"], "a": [3], "e": "Правильный ответ: пузырьковая сортировка."}, {"q": "Разбиение массива называется", "o": ["деление элементов массива на группы", "визуализированная сортировка", "удаление элемента", "сортировка вставкой", "ручная сортировка"], "a": [0], "e": "Правильный ответ: деление элементов массива на группы."}, {"q": "Определите алгоритм по шагам COUNT и массиву arr", "o": ["сортировка вставкой", "линейный поиск", "подсчёт сравнений", "быстрая сортировка", "пузырьковая сортировка"], "a": [2], "e": "Правильный ответ: подсчёт сравнений."}, {"q": "Сложность сортировки вставкой", "o": ["O(n)", "O(n²)", "O(n³)", "O(n⁴)", "O(n log n)"], "a": [1], "e": "Правильный ответ: O(n²)."}, {"q": "Сложность сортировки слиянием", "o": ["O(n log n)", "O(1)", "O(n²)", "O(log n)", "O(n³)"], "a": [0], "e": "Правильный ответ: O(n log n)."}, {"q": "В языке C++ при формировании программы не будет использоваться служебное слово", "o": ["пользовательская функция", "ранее использованная функция", "стандартная библиотека C++", "другой модуль", "функция без связи"], "a": [0], "e": "Правильный ответ: пользовательская функция."}, {"q": "Структура данных типа LIFO известна как", "o": ["множество", "список", "массив", "стек", "очередь"], "a": [3], "e": "Правильный ответ: стек."}, {"q": "Выберите правильную запись обращения к элементу двумерного массива в C++", "o": ["b[2][3]", "b[2]", "b(2,3)", "b[1,2]", "b[i]"], "a": [0], "e": "Правильный ответ: b[2][3]."}, {"q": "Присоединение содержимого одной строки к другой осуществляется с помощью функции", "o": ["strlen()", "strcat()", "strlength()", "strcpy()", "strcmp()"], "a": [1], "e": "Правильный ответ: strcat()."}, {"q": "Внешний цикл", "o": ["внутри вложенного цикла", "перед вложенным циклом", "на противоположной стороне", "на той же стороне", "на другой стороне"], "a": [1], "e": "Правильный ответ: перед вложенным циклом."}, {"q": "Просмотр всех путей в графе/дереве в поиске решения — это", "o": ["линейное преобразование", "операция адресации", "двойное кодирование", "метод поиска", "квадратичное преобразование"], "a": [3], "e": "Правильный ответ: метод поиска."}, {"q": "Пример обобщённого алгоритма", "o": ["X>=b+0", "5(X>=0)", "S²>=0", "a²-b²<=0", "a²=0"], "a": [0], "e": "Правильный ответ: X>=b+0."}, {"q": "Время поиска AVL-дерева", "o": ["O(N²)", "O(N)", "O(N³)", "O(N log N)", "O(log N)"], "a": [4], "e": "Правильный ответ: O(log N)."}, {"q": "Программа — это", "o": ["алгоритм в программном коде", "блок-схема", "устройство", "условная линия", "алгоритм на понятном компьютеру языке"], "a": [4], "e": "Правильный ответ: алгоритм на понятном компьютеру языке."}, {"q": "Вид алгоритма вычисления последовательно", "o": ["разветвляющийся", "циклический", "дополнительный", "условный", "линейный"], "a": [4], "e": "Правильный ответ: линейный."}, {"q": "Алгоритм для ориентированного графа без отрицательных весов", "o": ["Прима", "Дейкстры", "Крускала", "Беллмана–Форда", "Флойда–Уоршелла"], "a": [1], "e": "Правильный ответ: Дейкстры."}, {"q": "Последний тест проверяет", "o": ["на среднем уровне", "левый потомок", "не меньше своего «брата»", "на нижнем уровне", "правый потомок"], "a": [2], "e": "Правильный ответ: не меньше своего «брата»."}, {"q": "Программа может быть представлена в виде частей, потому что программа", "o": ["программа другого уровня", "не удовлетворяет условию", "полная", "доступное дерево", "обладает свойством упорядоченности"], "a": [4], "e": "Правильный ответ: обладает свойством упорядоченности."}], "db": [{"q": "Команда добавления данных в таблицу", "o": ["UPDATE", "GET", "DELETE", "POST", "PUT", "INSERT"], "a": [5], "e": "Правильный ответ: INSERT."}, {"q": "Агрегатные функции", "o": ["AVG", "DELETE", "SELECT", "WHERE", "MIN", "FROM", "UPDATE"], "a": [0, 4], "e": "Правильный ответ: AVG, MIN."}, {"q": "В подзапросах оператор IN", "o": ["может использоваться с подзапросами", "находит MIN", "находит AVG", "набор значений не должен совпадать", "не может использоваться с подзапросами", "находит MAX", "одно из значений должно совпадать"], "a": [0, 6], "e": "Правильный ответ: может использоваться с подзапросами, одно из значений должно совпадать."}, {"q": "SELECT ID FROM Students WHERE Name='Aidar';", "o": ["1", "5", "2", "3", "Kurmanov", "6"], "a": [5], "e": "Правильный ответ: 6."}, {"q": "Для каждого COURSE определите наименьший GPA", "o": ["SELECT COURSE, MAX(COURSE) FROM STUDENTS GROUP BY COURSE;", "SELECT COURSE, MIN(COURSE) FROM STUDENTS GROUP BY COURSE;", "SELECT * FROM STUDENTS GROUP BY COURSE;", "SELECT COURSE, MAX(GPA) FROM STUDENTS GROUP BY COURSE;", "SELECT * FROM STUDENTS;", "SELECT COURSE, MIN(GPA) FROM STUDENTS GROUP BY COURSE;"], "a": [5], "e": "Правильный ответ: SELECT COURSE, MIN(GPA) FROM STUDENTS GROUP BY COURSE;."}, {"q": "Операция сокращения в реляционной базе данных", "o": ["извлекает столбцы", "удаляет столбцы", "удаляет строки", "извлекает строки", "выборка строк", "выборка столбцов", "комбинация таблиц"], "a": [0, 5], "e": "Правильный ответ: извлекает столбцы, выборка столбцов."}, {"q": "Предикаты, включающие подзапросы", "o": ["не связаны с подзапросами", "<выражение><оператор><подзапрос>", "правил нет", "необратимы", "не являются необратимыми", "<подзапрос><оператор><выражение>", "<подзапрос><оператор><подзапрос>"], "a": [1], "e": "Правильный ответ: <выражение><оператор><подзапрос>."}, {"q": "Денормализация предполагает", "o": ["повышенную избыточность данных", "больше фильтрации", "больше поиска", "меньше данных", "меньше фильтрации", "меньше поиска"], "a": [0], "e": "Правильный ответ: повышенную избыточность данных."}, {"q": "Предикат — это", "o": ["операнд", "информация", "дерево", "функция с истинностными значениями", "параметр", "оператор"], "a": [3], "e": "Правильный ответ: функция с истинностными значениями."}, {"q": "Операторы, используемые в подзапросах", "o": ["HAVING", "BETWEEN", "LIKE", "GROUP BY", "ANY", "IS NULL", "IN"], "a": [4, 6], "e": "Правильный ответ: ANY, IN."}, {"q": "Правильные запросы с GROUP BY", "o": ["SELECT COURSE, MIN(GPA) FROM STUDENTS GROUP BY COURSE;", "SELECT COURSE, WHICH(GPA) FROM STUDENTS GROUP BY COURSE;", "SELECT COURSE, MIN(GPA) FROM STUDENTS GROUPING BY COURSE;", "SELECT COURSE, MAX(GPA) FROM STUDENTS GROUTING BY COURSE;", "SELECT COURSE, AVG(GPA) FROM STUDENTS GROUP BY COURSE;", "SELECT WHO(COURSE), MAX(GPA) FROM STUDENTS GROUP BY COURSE;", "SELECT WHICH(COURSE), MAX(GPA) FROM STUDENTS GROUP BY COURSE;", "SELECT COURSE, MAX(GPA) FROM STUDENTS GROUP BY COURSE;"], "a": [0, 4, 7], "e": "Правильный ответ: SELECT COURSE, MIN(GPA) FROM STUDENTS GROUP BY COURSE;, SELECT COURSE, AVG(GPA) FROM STUDENTS GROUP BY COURSE;, SELECT COURSE, MAX(GPA) FROM STUDENTS GROUP BY COURSE;."}, {"q": "Нормальная форма с полной зависимостью от всего первичного ключа", "o": ["4NF", "5NF", "6NF", "2NF", "3NF", "1NF"], "a": [3], "e": "Правильный ответ: 2NF."}, {"q": "Абстрактная машина доступа к данным", "o": ["строки", "запросы", "деревья", "столбцы", "модель данных", "группа данных"], "a": [4], "e": "Правильный ответ: модель данных."}, {"q": "Правильные UPDATE-команды", "o": ["CHANGE Students SET COURSE=4 WHERE ID=1;", "UPDATE Students ASSIGN COURSE=4 WHERE ID=1;", "UPDATE Students SET COURSE=2 WHERE ID=1;", "UPDATE Students SET COURSE=4 WHERE ID=1;", "CHANGE Students SET COURSE=4 WHERE ID=5;", "UPDATE Students ATTACH COURSE=4 WHERE ID=1;", "UPDATE Students SET COURSE=4 WHICH ID=1;"], "a": [2, 3], "e": "Правильный ответ: UPDATE Students SET COURSE=2 WHERE ID=1;, UPDATE Students SET COURSE=4 WHERE ID=1;."}, {"q": "Используется для объединения таблиц", "o": ["WHICH", "ALTER", "WHY", "CONNECT", "CREATE", "JOIN"], "a": [5], "e": "Правильный ответ: JOIN."}, {"q": "Условия 3NF для зависимости X → A", "o": ["X входит в потенциальный ключ", "X не входит в потенциальный ключ", "X является суперключом", "A входит в потенциальный ключ", "A не входит в ключ", "X не включает A", "X не суперключ", "X включает A (тривиальная ФЗ)"], "a": [2, 3, 7], "e": "Правильный ответ: X является суперключом, A входит в потенциальный ключ, X включает A (тривиальная ФЗ)."}, {"q": "Аксиомы Армстронга", "o": ["образность", "серийность", "параллельность", "рефлексивность", "балансированность", "дополнение", "транзитивность", "интеграция"], "a": [3, 5, 6], "e": "Правильный ответ: рефлексивность, дополнение, транзитивность."}, {"q": "Метод «сущность–связь» называют методом", "o": ["EA", "AE", "EE", "RR", "EZ", "ER"], "a": [5], "e": "Правильный ответ: ER."}, {"q": "SELECT Name FROM Students WHERE ID=1 OR ID=2;", "o": ["Yerbol", "3", "Karenina", "Aidar", "5", "4", "Aidana"], "a": [0, 6], "e": "Правильный ответ: Yerbol, Aidana."}, {"q": "Команда изменения данных в таблице", "o": ["CREATE", "UPDATE", "ATTACH", "ALTER", "DROP", "USE"], "a": [1], "e": "Правильный ответ: UPDATE."}]};
+const letters="ABCDEFGH";
+let mode="quiz", subject="alg", answers={};
+
+function key(){return subject+"_"+mode}
+function setMode(m){
+ mode=m; answers={};
+ quizBtn.classList.toggle("on",m==="quiz");
+ testBtn.classList.toggle("on",m==="test");
+ finish.style.display=m==="test"?"inline-block":"none";
+ render();
+}
+function setSubject(s){
+ subject=s; answers={};
+ algBtn.classList.toggle("on",s==="alg");
+ dbBtn.classList.toggle("on",s==="db");
+ render();
+}
+function same(a,b){return JSON.stringify([...a].sort((x,y)=>x-y))===JSON.stringify([...b].sort((x,y)=>x-y))}
+function render(){
+ const arr=D[subject];
+ info.textContent=(subject==="alg"?"Алгоритмы и структуры данных":"Базы данных")+" · "+arr.length+" вопросов";
+ questions.innerHTML=arr.map((x,i)=>{
+   const multi=x.a.length>1;
+   return `<div class="q" id="q${i}">
+    <div class="num">ВОПРОС ${i+1} / ${arr.length}${multi?" · НЕСКОЛЬКО ОТВЕТОВ":""}</div>
+    <h3>${escapeHtml(x.q)}</h3>
+    ${x.o.map((o,j)=>`<label class="opt" data-j="${j}">
+      <input type="${multi?"checkbox":"radio"}" name="q${i}" value="${j}" onchange="choose(${i},${j},this)">
+      <span><b>${letters[j]}.</b> ${escapeHtml(o)}</span>
+    </label>`).join("")}
+    <div class="exp" id="e${i}">${escapeHtml(x.e)}</div>
+   </div>`
+ }).join("");
+ result.classList.remove("show");
+ finish.style.display=mode==="test"?"inline-block":"none";
+}
+function choose(i,j,input){
+ const x=D[subject][i];
+ if(x.a.length>1){
+   answers[i]=[...document.querySelectorAll(`#q${i} input:checked`)].map(e=>+e.value);
+   if(mode==="quiz") return; // multi-answer is checked when selection is complete via result button only
+ } else {
+   answers[i]=[j];
+   if(mode==="quiz") checkOne(i);
+ }
+}
+function checkOne(i){
+ const x=D[subject][i], chosen=answers[i]||[];
+ const q=document.getElementById("q"+i);
+ q.querySelectorAll("input").forEach(e=>e.disabled=true);
+ q.querySelectorAll(".opt").forEach((el,j)=>{
+   if(x.a.includes(j)) el.classList.add("good");
+   else if(chosen.includes(j)) el.classList.add("bad");
+ });
+ document.getElementById("e"+i).classList.add("show");
+}
+function finishTest(){
+ let score=0;
+ D[subject].forEach((x,i)=>{
+   const chosen=answers[i]||[];
+   if(same(chosen,x.a)) score++;
+   const q=document.getElementById("q"+i);
+   q.querySelectorAll(".opt").forEach((el,j)=>{
+     if(x.a.includes(j)) el.classList.add("good");
+     else if(chosen.includes(j)) el.classList.add("bad");
+   });
+   q.querySelectorAll("input").forEach(e=>e.disabled=true);
+   document.getElementById("e"+i).classList.add("show");
+ });
+ result.innerHTML=`<strong>${score} / ${D[subject].length}</strong><div>Правильных ответов · ${Math.round(score/D[subject].length*100)}%</div>`;
+ result.classList.add("show");
+ result.scrollIntoView({behavior:"smooth",block:"center"});
+}
+function resetAll(){answers={};render();scrollTo({top:0,behavior:"smooth"})}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+render();
+</script>
+</body></html>
